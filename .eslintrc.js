@@ -12,6 +12,7 @@ module.exports = {
     'Atomics': 'readonly',
     'SharedArrayBuffer': 'readonly',
   },
+  'parser': 'babel-eslint',
   'parserOptions': {
     'ecmaFeatures': {
       'jsx': true,
@@ -27,6 +28,16 @@ module.exports = {
     'indent': [
       'error',
       2,
+      {
+        'ignoredNodes': [
+          'JSXElement *',
+          'JSXElement',
+        ],
+      },
+    ],
+    'react/jsx-indent-props': [
+      2,
+      'first',
     ],
     'linebreak-style': [
       'error',
