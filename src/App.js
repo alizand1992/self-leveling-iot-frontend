@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 
 import Container from 'react-bootstrap/Container';
 
-import SignIn from './Components/Users/SignIn';
+import Loading from './Components/Common/Loading';
 
 function App() {
+  const SignIn = React.lazy(() => import('./Components/Users/SignIn'));
+  const SignUp = React.lazy(() => import('./Components/Users/SignUp'));
+
   return (
     <Container>
-      <SignIn />
+      <Suspense fallback={<Loading />}>
+        <SignIn />
+        <SignUp />
+      </Suspense>
     </Container>
   );
 }
