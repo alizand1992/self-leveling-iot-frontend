@@ -2,12 +2,21 @@ import React from 'react';
 
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+import configureStore from 'redux-mock-store';
+
 import SignIn from '../../../Components/Users/SignIn';
 
 configure({ adapter: new Adapter() });
+const mockStore = configureStore({});
 
 describe('Sign In', () => {
-  const wrapper = shallow(<SignIn />);
+  let store;
+  let wrapper;
+
+  beforeEach(() => {
+    store = mockStore({});
+    wrapper = shallow(<SignIn store={store} />).dive();
+  });
 
   it('has a Card', () => {
     expect(wrapper.find('Card')).toHaveLength(1);
@@ -34,9 +43,8 @@ describe('Sign In', () => {
   });
 
   describe('with changes to the email field', () => {
-    wrapper.find({ id: 'email' }).simulate('change', { target: { value: 'john.smith@gmail.com' }});
-
     it('updates the state email', () => {
+      wrapper.find({ id: 'email' }).simulate('change', { target: { value: 'john.smith@gmail.com' }});
       expect(wrapper.state('email')).toBe('john.smith@gmail.com');
     });
 
@@ -46,9 +54,8 @@ describe('Sign In', () => {
   });
 
   describe('with changes to the password field', () => {
-    wrapper.find({ id: 'password' }).simulate('change', { target: { value: 'password123' }});
-
     it('updates the state password', () => {
+      wrapper.find({ id: 'password' }).simulate('change', { target: { value: 'password123' } });
       expect(wrapper.state('password')).toBe('password123');
     });
 

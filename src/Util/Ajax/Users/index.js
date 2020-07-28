@@ -8,6 +8,10 @@ export const signIn = (data, successCallback, failureCallback) => {
   ).then((res) => {
     successCallback(res.data, res.headers.authorization);
   }).catch((err) => {
-    failureCallback(err.response.data.error);
+    if (err.response) {
+      failureCallback(err.response.data.error);
+    } else {
+      failureCallback('An unknown error has occurred.');
+    }
   });
 };

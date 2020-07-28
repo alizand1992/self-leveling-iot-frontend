@@ -7,6 +7,9 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import { signIn } from '../../Util/Ajax/Users';
+import { signUserIn } from '../../actions/Users';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 class SignIn extends React.Component {
   constructor(props) {
@@ -37,8 +40,8 @@ class SignIn extends React.Component {
       return;
     }
 
-    signIn({ email, password }, (user, auth) => {
-      console.log(user, auth);
+    signIn({ email, password }, (userData, authorization) => {
+      this.props.signUserIn(userData, authorization);
     }, (errors) => {
       this.setState({ errors: [errors] });
     });
@@ -117,4 +120,6 @@ class SignIn extends React.Component {
   }
 }
 
-export default SignIn;
+const mapDispatchToProps = (dispatch) => bindActionCreators({ signUserIn }, dispatch);
+
+export default connect(null, mapDispatchToProps)(SignIn);
