@@ -7,6 +7,9 @@ export const userReducer = (state = {}, action) => {
         ...action.data,
       };
 
+    case UserActionTypes.SIGN_USER_OUT:
+      return {};
+
     default:
       return state;
   }
