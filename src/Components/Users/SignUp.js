@@ -33,7 +33,7 @@ class SignUp extends React.Component {
   }
 
   signUp = () => {
-    let { confirm_password, email, password, first_name, last_name } = this.state;
+    let { email, password, first_name, last_name, confirm_password } = this.state;
     let errors = [];
 
     errors.push(fieldNotEmpty({ first_name, last_name }));
@@ -47,7 +47,7 @@ class SignUp extends React.Component {
       return;
     }
 
-    signUp({ email, password }, (userData, authorization) => {
+    signUp({ first_name, last_name, email, password, confirm_password }, (userData, authorization) => {
       this.props.signUserUp(userData, authorization);
     }, (errors) => {
       this.setState({ errors: [errors] });
