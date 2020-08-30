@@ -31,3 +31,18 @@ export const signUp = (data, successCallback, failureCallback) => {
     }
   });
 };
+
+export const getUserData = (authorization, successCallback, failureCallback) => {
+  axios.post(
+    '/user/get_data', {
+    }, {
+      headers: {
+        authorization,
+      }
+    }
+  ).then((res) => {
+    successCallback(res.data);
+  }).catch((err) => {
+    failureCallback(err);
+  });
+};

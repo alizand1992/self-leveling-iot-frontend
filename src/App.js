@@ -4,23 +4,67 @@ import axios from 'axios';
 
 import Container from 'react-bootstrap/Container';
 
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
 import Loading from './Components/Common/Loading';
+import { getUserData } from './Util/Ajax/Users';
+import { bindActionCreators } from 'redux';
 
-function App() {
-  axios.defaults.baseURL = 'http://localhost:5002';
-  axios.defaults.headers['Content-Type'] = 'application/json';
+import { signUserIn } from './actions/Users';
+import { connect } from 'react-redux';
 
-  const SignIn = React.lazy(() => import('./Components/Users/SignIn'));
-  const SignUp = React.lazy(() => import('./Components/Users/SignUp'));
+class App extends React.Component {
+  constructor(props) {
+    super(props);
 
-  return (
-    <Container>
-      <Suspense fallback={<Loading />}>
-        <SignIn />
-        <SignUp />
-      </Suspense>
-    </Container>
-  );
+    axios.defaults.baseURL = 'http://localhost:5002';
+    axios.defaults.headers['Content-Type'] = 'application/json';
+  }
+
+  componentDidMount() {
+    const authorization = localStorage.getItem('authorization');
+
+    if (authorization && !this.props.authorization) {
+      getUserData(authorization, (res) => {
+        this.props.signUserIn(res, authorization);
+      }, (err) => {
+        console.log(err);
+      });
+    }
+  }
+
+  render() {
+    const SignIn = React.lazy(() => import('./Components/Users/SignIn'));
+    const SignUp = React.lazy(() => import('./Components/Users/SignUp'));
+    const SignOut = React.lazy(() => import('./Components/Users/SignOut'));
+
+    return (
+      <Router>
+        <Container>
+          <Suspense fallback={<Loading/>}>
+            <Switch>
+              <Route path="/user/sign_out">
+                <SignOut/>
+              </Route>
+              <Route path="/user/sign_in">
+                <SignIn/>
+              </Route>
+              <Route path="/user/sign_up">
+                <SignUp/>
+              </Route>
+            </Switch>
+          </Suspense>
+        </Container>
+      </Router>
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  state: state,
+  authorization: state.user.authorization,
+});
+
+const mapDispatchToProps = (dispatch) => bindActionCreators({ signUserIn }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
