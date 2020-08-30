@@ -16,13 +16,13 @@ export const signIn = (data, successCallback, failureCallback) => {
   });
 };
 
-export const signUp = (data, successfulCallback, failureCallback) => {
+export const signUp = (data, successCallback, failureCallback) => {
   axios.post(
     '/users', {
       user: data,
     }
   ).then((res) => {
-    successfulCallback(res.data, res.headers.authorization);
+    successCallback(res.data, res.headers.authorization);
   }).catch((err) => {
     if (err.response && err.response.data.error) {
       failureCallback(err.response.data.error);

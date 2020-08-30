@@ -13,12 +13,14 @@ import { bindActionCreators } from 'redux';
 
 import { validateEmail, validatePassword } from '../../Util/Validator';
 import Errors from '../Common/Errors';
+import { Redirect } from 'react-router-dom';
 
 class SignIn extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      authorization: props.authorization,
       email: '',
       password: '',
       errors: [],
@@ -44,6 +46,7 @@ class SignIn extends React.Component {
     }
 
     signIn({ email, password }, (userData, authorization) => {
+      window.localStorage.setItem('authorization', authorization);
       this.props.signUserIn(userData, authorization);
     }, (errors) => {
       this.setState({ errors: [errors] });
@@ -51,7 +54,11 @@ class SignIn extends React.Component {
   }
 
   render() {
-    const { email, password, errors } = this.state;
+    const { authorization, email, password, errors } = this.state;
+
+    if (authorization) {
+      return <Redirect to="/" />;
+    }
 
     return (
       <React.Fragment>
@@ -91,6 +98,10 @@ class SignIn extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  authorization: state.user.authorization,
+});
+
 const mapDispatchToProps = (dispatch) => bindActionCreators({ signUserIn }, dispatch);
 
-export default connect(null, mapDispatchToProps)(SignIn);
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
