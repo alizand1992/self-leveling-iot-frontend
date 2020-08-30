@@ -11,6 +11,7 @@ module.exports = {
   'globals': {
     'Atomics': 'readonly',
     'SharedArrayBuffer': 'readonly',
+    'process': true,
   },
   'parser': 'babel-eslint',
   'parserOptions': {
@@ -51,14 +52,12 @@ module.exports = {
     'semi': [
       'error',
       'always',
-    ]
+    ],
+    "react/prop-types": 0
   },
   'settings': {
     'react': {
       'version': 'detect',
     },
-  },
-  'globals': {
-    'process': true,
   },
 };

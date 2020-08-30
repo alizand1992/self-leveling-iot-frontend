@@ -1,13 +1,20 @@
 import React from 'react';
 
-import { configure, shallow } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import { shallow } from 'enzyme';
+import configureStore from 'redux-mock-store';
+
 import SignUp from '../../../Components/Users/SignUp';
 
-configure({ adapter: new Adapter() });
+const mockStore = configureStore({});
 
 describe('Sign Up', () => {
-  const wrapper = shallow(<SignUp />);
+  let store;
+  let wrapper;
+
+  beforeEach(() => {
+    store = mockStore({});
+    wrapper = shallow(<SignUp store={store} />).dive();
+  });
 
   it('has a Card', () => {
     expect(wrapper.find('Card')).toHaveLength(1);
@@ -43,41 +50,41 @@ describe('Sign Up', () => {
 
   describe('onChange', () => {
     describe('first_name change', () => {
-      wrapper.find({ id: 'first_name' }).simulate('change', { target: { value: 'John' } });
-
       it('updates the first_name state', () => {
+        wrapper.find({ id: 'first_name' }).simulate('change', { target: { value: 'John' } });
+
         expect(wrapper.state('first_name')).toBe('John');
       });
     });
 
     describe('last_name change', () => {
-      wrapper.find({ id: 'last_name' }).simulate('change', { target: { value: 'Smith' } });
-
       it('updates the last_name state', () => {
+        wrapper.find({ id: 'last_name' }).simulate('change', { target: { value: 'Smith' } });
+
         expect(wrapper.state('last_name')).toBe('Smith');
       });
     });
 
     describe('email change', () => {
-      wrapper.find({ id: 'email' }).simulate('change', { target: { value: 'john.smith@gmail.com' } });
-
       it('updates the email state', () => {
+        wrapper.find({ id: 'email' }).simulate('change', { target: { value: 'john.smith@gmail.com' } });
+
         expect(wrapper.state('email')).toBe('john.smith@gmail.com');
       });
     });
 
     describe('password change',  () => {
-      wrapper.find({ id: 'password' }).simulate('change', { target: { value: 'password123' } });
-
       it('updates the password state', () => {
+        wrapper.find({ id: 'password' }).simulate('change', { target: { value: 'password123' } });
+
         expect(wrapper.state('password')).toBe('password123');
       });
     });
 
     describe('confirm_password change',  () => {
-      wrapper.find({ id: 'confirm_password' }).simulate('change', { target: { value: 'password123' } });
-
       it('updates the confirm_password state', () => {
+        wrapper.find({ id: 'confirm_password' }).simulate('change', { target: { value: 'password123' } });
+
         expect(wrapper.state('confirm_password')).toBe('password123');
       });
     });

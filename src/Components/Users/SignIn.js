@@ -1,15 +1,18 @@
 import React from 'react';
 
-import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
+
 import { signIn } from '../../Util/Ajax/Users';
 import { signUserIn } from '../../actions/Users';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+
+import { validateEmail, validatePassword } from '../../Util/Validator';
+import Errors from '../Common/Errors';
 
 class SignIn extends React.Component {
   constructor(props) {
@@ -27,11 +30,11 @@ class SignIn extends React.Component {
   }
 
   signIn = () => {
-    let { email, password } = this.state;
+    const { email, password } = this.state;
     let errors = [];
 
-    errors.push(this.validateEmail(email));
-    errors.push(this.validatePassword(password));
+    errors.push(validateEmail(email));
+    errors.push(validatePassword(password));
     errors = errors.flat();
 
     this.setState({ errors: errors });
@@ -47,44 +50,12 @@ class SignIn extends React.Component {
     });
   }
 
-  validateEmail = (email) => {
-    email = email.trim();
-
-    if (email.length === 0) {
-      return ['Email cannot be empty.'];
-    }
-
-    return [];
-  }
-
-  validatePassword = (password) => {
-    password = password.trim();
-
-    if (password.length === 0) {
-      return ['Password cannot be empty.'];
-    } else if (password.length < 6) {
-      return ['Password needs to be at least 6 characters.'];
-    }
-
-    return [];
-  }
-
   render() {
     const { email, password, errors } = this.state;
 
     return (
       <React.Fragment>
-        {errors.length !== 0 &&
-        <Row>
-          <Col md={{ span: 6, offset: 3 }}>
-            <Alert variant="danger">
-              <ul>
-                {errors.map((error, index) => <li key={index}>{error}</li>)}
-              </ul>
-            </Alert>
-          </Col>
-        </Row>
-        }
+        <Errors errors={errors} />
         <Row>
           <Col md={{ span: 6, offset: 3}}>
             <Card>

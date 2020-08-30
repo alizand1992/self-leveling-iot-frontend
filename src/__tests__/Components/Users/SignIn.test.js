@@ -1,12 +1,10 @@
 import React from 'react';
 
-import { configure, shallow } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import { shallow } from 'enzyme';
 import configureStore from 'redux-mock-store';
 
 import SignIn from '../../../Components/Users/SignIn';
 
-configure({ adapter: new Adapter() });
 const mockStore = configureStore({});
 
 describe('Sign In', () => {
@@ -76,7 +74,7 @@ describe('Sign In', () => {
         });
 
         it('shows an error on the screen', () => {
-          expect(wrapper.find('Alert').text()).toContain('Email cannot be empty.');
+          expect(wrapper.find('Errors').html()).toContain('Email cannot be empty.');
         });
       });
 
@@ -86,7 +84,7 @@ describe('Sign In', () => {
         });
 
         it('shows an error on the screen', () => {
-          expect(wrapper.find('Alert').text()).toContain('Password cannot be empty.');
+          expect(wrapper.find('Errors').html()).toContain('Password cannot be empty.');
         });
       });
     });
@@ -120,7 +118,7 @@ describe('Sign In', () => {
         });
 
         it('has an alert with the correct message', () => {
-          expect(wrapper.find('Alert').text()).toBe('Password needs to be at least 6 characters.');
+          expect(wrapper.find('Errors').html()).toContain('Password needs to be at least 6 characters.');
         });
       });
     });
