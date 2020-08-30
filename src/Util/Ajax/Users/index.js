@@ -8,7 +8,7 @@ export const signIn = (data, successCallback, failureCallback) => {
   ).then((res) => {
     successCallback(res.data, res.headers.authorization);
   }).catch((err) => {
-    if (err.response) {
+    if (err.response && err.response.data.error) {
       failureCallback(err.response.data.error);
     } else {
       failureCallback('An unknown error has occurred.');
@@ -18,16 +18,16 @@ export const signIn = (data, successCallback, failureCallback) => {
 
 export const signUp = (data, successfulCallback, failureCallback) => {
   axios.post(
-    '/users/sign_up', {
+    '/users', {
       user: data,
     }
   ).then((res) => {
     successfulCallback(res.data, res.headers.authorization);
   }).catch((err) => {
-    if (err.response) {
+    if (err.response && err.response.data.error) {
       failureCallback(err.response.data.error);
     } else {
-      failureCallback('An Unknown error has occured.');
+      failureCallback('An Unknown error has occurred.');
     }
   });
 };
