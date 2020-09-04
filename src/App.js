@@ -12,6 +12,7 @@ import { bindActionCreators } from 'redux';
 
 import { signUserIn } from './actions/Users';
 import { connect } from 'react-redux';
+import ProtectedRoute from './Components/Common/ProtectedRoute';
 
 class App extends React.Component {
   constructor(props) {
@@ -37,6 +38,7 @@ class App extends React.Component {
     const SignIn = React.lazy(() => import('./Components/Users/SignIn'));
     const SignUp = React.lazy(() => import('./Components/Users/SignUp'));
     const SignOut = React.lazy(() => import('./Components/Users/SignOut'));
+    const Profile = React.lazy(() => import('./Components/Users/Profile'));
 
     return (
       <Router>
@@ -44,17 +46,21 @@ class App extends React.Component {
           <Link to="/user/sign_in">Sign In</Link>
           <Link to="/user/sign_up">Sign Up</Link>
           <Link to="/user/sign_out">Sign Out</Link>
+          <Link to="/user/profile">Profile</Link>
           <Suspense fallback={<Loading/>}>
             <Switch>
               <Route path="/user/sign_out">
-                <SignOut/>
+                <SignOut />
               </Route>
               <Route path="/user/sign_in">
-                <SignIn/>
+                <SignIn />
               </Route>
               <Route path="/user/sign_up">
-                <SignUp/>
+                <SignUp />
               </Route>
+              <ProtectedRoute path="/user/profile">
+                <Profile />
+              </ProtectedRoute>
             </Switch>
           </Suspense>
         </Container>
