@@ -11,7 +11,9 @@ module.exports = {
   'globals': {
     'Atomics': 'readonly',
     'SharedArrayBuffer': 'readonly',
+    'process': true,
   },
+  'parser': 'babel-eslint',
   'parserOptions': {
     'ecmaFeatures': {
       'jsx': true,
@@ -27,6 +29,17 @@ module.exports = {
     'indent': [
       'error',
       2,
+      {
+        'SwitchCase': 1,
+        'ignoredNodes': [
+          'JSXElement *',
+          'JSXElement',
+        ],
+      },
+    ],
+    'react/jsx-indent-props': [
+      2,
+      'first',
     ],
     'linebreak-style': [
       'error',
@@ -39,14 +52,12 @@ module.exports = {
     'semi': [
       'error',
       'always',
-    ]
+    ],
+    "react/prop-types": 0
   },
   'settings': {
     'react': {
       'version': 'detect',
     },
-  },
-  'globals': {
-    'process': true,
   },
 };
