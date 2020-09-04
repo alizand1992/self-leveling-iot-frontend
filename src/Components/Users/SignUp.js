@@ -48,6 +48,7 @@ class SignUp extends React.Component {
     }
 
     signUp({ first_name, last_name, email, password, confirm_password }, (userData, authorization) => {
+      window.localStorage.setItem('authorization', authorization);
       this.props.signUserUp(userData, authorization);
     }, (errors) => {
       this.setState({ errors: [errors] });

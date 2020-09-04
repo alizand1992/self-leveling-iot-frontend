@@ -15,3 +15,7 @@ export const signUserUp = (userData, authorization) => ({
     authorization,
   },
 });
+
+export const signUserOut = () => ({
+  type: UserActionTypes.SIGN_USER_OUT,
+});

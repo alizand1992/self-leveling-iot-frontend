@@ -12,8 +12,10 @@ describe('Sign In', () => {
   let wrapper;
 
   beforeEach(() => {
-    store = mockStore({});
-    wrapper = shallow(<SignIn store={store} />).dive();
+    store = mockStore({
+      user: {}
+    });
+    wrapper = shallow(<SignIn store={store} />).dive().dive();
   });
 
   it('has a Card', () => {
@@ -121,6 +123,25 @@ describe('Sign In', () => {
           expect(wrapper.find('Errors').html()).toContain('Password needs to be at least 6 characters.');
         });
       });
+    });
+  });
+
+  describe('Already Signed In', () => {
+    beforeEach(() => {
+      store = mockStore({
+        user: {
+          authorization: 'bearer some_hex',
+        },
+      });
+      wrapper = shallow(<SignIn store={store} />).dive().dive();
+    });
+
+    it('redirects', () => {
+      expect(wrapper.find('Redirect')).toHaveLength(1);
+    });
+
+    it('has a path to root', () => {
+      expect(wrapper.find('Redirect').props().to).toBe('/');
     });
   });
 });
