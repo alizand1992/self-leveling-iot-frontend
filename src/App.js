@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import Container from 'react-bootstrap/Container';
 
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 import Loading from './Components/Common/Loading';
 import { getUserData } from './Util/Ajax/Users';
@@ -41,6 +41,9 @@ class App extends React.Component {
     return (
       <Router>
         <Container>
+          <Link to="/user/sign_in">Sign In</Link>
+          <Link to="/user/sign_up">Sign Up</Link>
+          <Link to="/user/sign_out">Sign Out</Link>
           <Suspense fallback={<Loading/>}>
             <Switch>
               <Route path="/user/sign_out">
