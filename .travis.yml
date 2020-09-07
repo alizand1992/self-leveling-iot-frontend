@@ -8,7 +8,7 @@ node_js:
 branches:
   only:
     - master
-
+    - ^RF-\d*
 jobs:
   include:
     - name: "Jest + Enzyme Tests"
