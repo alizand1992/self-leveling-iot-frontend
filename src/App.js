@@ -39,18 +39,21 @@ class App extends React.Component {
     const SignUp = React.lazy(() => import('./Components/Users/SignUp'));
     const SignOut = React.lazy(() => import('./Components/Users/SignOut'));
     const Profile = React.lazy(() => import('./Components/Users/Profile'));
+
+    const Notifications = React.lazy(() => import('./Components/Notifications'));
     const NewNotification = React.lazy(() => import('./Components/Notifications/New'));
     const EditNotification = React.lazy(() => import('./Components/Notifications/Edit'));
 
     return (
       <Router>
         <Container>
-          <Link to="/user/sign_in">Sign In</Link>
-          <Link to="/user/sign_up">Sign Up</Link>
-          <Link to="/user/sign_out">Sign Out</Link>
-          <Link to="/user/profile">Profile</Link>
-          <Link to="/notifications/new">Create Notification</Link>
-          <Link to="/notifications/edit">Update Notification</Link>
+          <Link to="/user/sign_in">Sign In</Link> <br />
+          <Link to="/user/sign_up">Sign Up</Link> <br />
+          <Link to="/user/sign_out">Sign Out</Link> <br />
+          <Link to="/user/profile">Profile</Link> <br />
+          <Link to="/notifications">Notifications</Link> <br />
+          <Link to="/notifications/new">Create Notification</Link> <br />
+          <Link to="/notifications/edit">Update Notification</Link> <br />
 
           <Suspense fallback={<Loading/>}>
             <Switch>
@@ -69,8 +72,11 @@ class App extends React.Component {
               <ProtectedRoute path="/notifications/new">
                 <NewNotification />
               </ProtectedRoute>
-              <ProtectedRoute path="/notifications/edit">
+              <ProtectedRoute path="/notifications/edit/:id">
                 <EditNotification />
+              </ProtectedRoute>
+              <ProtectedRoute path="/notifications/">
+                <Notifications />
               </ProtectedRoute>
             </Switch>
           </Suspense>

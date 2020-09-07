@@ -1,8 +1,9 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 import NotificationsForm from './NotificationsForm';
+import { withRouter } from 'react-router-dom';
 
-class New extends React.Component {
+class Edit extends React.Component {
   constructor(props) {
     super(props);
 
@@ -42,4 +43,4 @@ class New extends React.Component {
   }
 }
 
-export default New;
+export default withRouter(Edit);
