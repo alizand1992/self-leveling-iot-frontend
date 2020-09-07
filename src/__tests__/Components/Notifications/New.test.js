@@ -33,4 +33,8 @@ describe('Notification > New', () => {
         .find({ description: 'Notify user when the battery goes below 20%.' })
     ).toHaveLength(1);
   });
+
+  it('Passes Create as the buttonText', () => {
+    expect(wrapper.find('NotificationsForm').find({ buttonText: 'Create' })).toHaveLength(1);
+  });
 });

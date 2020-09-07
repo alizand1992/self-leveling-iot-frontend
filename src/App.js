@@ -40,6 +40,7 @@ class App extends React.Component {
     const SignOut = React.lazy(() => import('./Components/Users/SignOut'));
     const Profile = React.lazy(() => import('./Components/Users/Profile'));
     const NewNotification = React.lazy(() => import('./Components/Notifications/New'));
+    const EditNotification = React.lazy(() => import('./Components/Notifications/Edit'));
 
     return (
       <Router>
@@ -49,6 +50,7 @@ class App extends React.Component {
           <Link to="/user/sign_out">Sign Out</Link>
           <Link to="/user/profile">Profile</Link>
           <Link to="/notifications/new">Create Notification</Link>
+          <Link to="/notifications/edit">Update Notification</Link>
 
           <Suspense fallback={<Loading/>}>
             <Switch>
@@ -66,6 +68,9 @@ class App extends React.Component {
               </ProtectedRoute>
               <ProtectedRoute path="/notifications/new">
                 <NewNotification />
+              </ProtectedRoute>
+              <ProtectedRoute path="/notifications/edit">
+                <EditNotification />
               </ProtectedRoute>
             </Switch>
           </Suspense>
