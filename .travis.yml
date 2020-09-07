@@ -10,7 +10,7 @@ jobs:
     - name: "Jest + Enzyme Tests"
       script:
         - npm install
-        - npm run test
+        - npm run test -- --coverage --collectCoverageFrom='["src/Components/**/*.js", "!node_modules/**", "!src/__tests__/**"]' --watchAll
     - name: "Linter"
       script:
         - npm install

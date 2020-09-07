@@ -48,6 +48,10 @@ describe('Sign Up', () => {
     expect(wrapper.find('Button').text()).toBe('Sign Up');
   });
 
+  it('returns undefined from signUp with erros', () => {
+    expect(wrapper.instance().submit()).toBe(undefined);
+  });
+
   describe('onChange', () => {
     describe('first_name change', () => {
       it('updates the first_name state', () => {
@@ -87,6 +91,25 @@ describe('Sign Up', () => {
 
         expect(wrapper.state('confirm_password')).toBe('password123');
       });
+    });
+  });
+
+  describe('with all the values', () => {
+    it('calls signUp', () => {
+      const userAjax = require('../../../Util/Ajax/Users');
+      const signUp = jest.spyOn(userAjax, 'signUp');
+
+      wrapper.setState({
+        first_name: 'John',
+        last_name: 'Smith',
+        email: 'john.smith.gmail.com',
+        password: 'password123',
+        confirm_password: 'password123',
+      });
+
+      wrapper.instance().submit();
+
+      expect(signUp).toBeCalled();
     });
   });
 });
