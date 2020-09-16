@@ -8,3 +8,14 @@ export const getNotifications = (successCallback) => {
       console.log(err);
     });
 };
+
+export const saveNotification = (data, successCallback) => {
+  axios.post(
+    '/notifications',
+    data
+  ).then(() => {
+    successCallback();
+  }).catch((err) => {
+    console.log({ err });
+  });
+};
