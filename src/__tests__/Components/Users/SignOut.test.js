@@ -20,7 +20,7 @@ describe('Sign Out', () => {
   });
 
   describe('loading', () => {
-    it('renders a loding component', () => {
+    it('renders a loading component', () => {
       expect(wrapper.find('Loading')).toHaveLength(1);
     });
 

@@ -20,6 +20,7 @@ class App extends React.Component {
 
     axios.defaults.baseURL = 'http://localhost:5002';
     axios.defaults.headers['Content-Type'] = 'application/json';
+    axios.defaults.headers['authorization'] = localStorage.getItem('authorization');
   }
 
   componentDidMount() {
