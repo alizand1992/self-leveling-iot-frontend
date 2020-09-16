@@ -10,7 +10,7 @@ import Loading from './Components/Common/Loading';
 import { getUserData } from './Util/Ajax/Users';
 import { bindActionCreators } from 'redux';
 
-import { signUserIn } from './actions/Users';
+import { signUserIn, signUserOut } from './actions/Users';
 import { connect } from 'react-redux';
 import ProtectedRoute from './Components/Common/ProtectedRoute';
 
@@ -30,7 +30,9 @@ class App extends React.Component {
       getUserData(authorization, (res) => {
         this.props.signUserIn(res, authorization);
       }, (err) => {
-        console.log(err);
+        this.props.signUserOut();
+        axios.defaults.headers['authorization'] = '';
+        localStorage.clear();
       });
     }
   }
@@ -92,6 +94,6 @@ const mapStateToProps = (state) => ({
   authorization: state.user.authorization,
 });
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({ signUserIn }, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators({ signUserIn, signUserOut }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
