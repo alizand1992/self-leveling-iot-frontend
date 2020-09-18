@@ -3,7 +3,7 @@ import React from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-const NotificationsForm = ({ buttonText, submit, handleChange, name, description }) => {
+const NotificationsForm = ({ buttonText, submit, handleChange, name, description, submitDisabled = false }) => {
   return (
     <Form>
       <Form.Group>
@@ -21,7 +21,7 @@ const NotificationsForm = ({ buttonText, submit, handleChange, name, description
                       value={description}
                       onChange={(e) =>  handleChange(e, 'description')}  />
       </Form.Group>
-      <Button type="primary" className="float-right" onClick={submit}>
+      <Button type="primary" className="float-right" onClick={submit} disabled={submitDisabled}>
         {buttonText}
       </Button>
     </Form>

@@ -56,7 +56,6 @@ class App extends React.Component {
           <Link to="/user/profile">Profile</Link> <br />
           <Link to="/notifications">Notifications</Link> <br />
           <Link to="/notifications/new">Create Notification</Link> <br />
-          <Link to="/notifications/edit">Update Notification</Link> <br />
 
           <Suspense fallback={<Loading/>}>
             <Switch>
