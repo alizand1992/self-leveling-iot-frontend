@@ -30,6 +30,7 @@ class App extends React.Component {
       getUserData(authorization, (res) => {
         this.props.signUserIn(res, authorization);
       }, (err) => {
+        console.log(err);
         this.props.signUserOut();
         axios.defaults.headers['authorization'] = '';
         localStorage.clear();

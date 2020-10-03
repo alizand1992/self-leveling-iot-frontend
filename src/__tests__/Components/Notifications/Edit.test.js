@@ -6,7 +6,7 @@ import Edit from '../../../Components/Notifications/Edit';
 
 describe('Notification > Edit', () => {
   describe('Without props', () => {
-    const wrapper = shallow(<Edit.WrappedComponent />);
+    const wrapper = shallow(<Edit.WrappedComponent match={{ params: { id: 1 }}} />);
 
     it('sets name as an empty string', () => {
       expect(wrapper.state().name).toBe('');
@@ -50,7 +50,7 @@ describe('Notification > Edit', () => {
   });
 
   describe('With props', () => {
-    const wrapper = shallow(<Edit.WrappedComponent name="Low Battery" description="Notify user when battery is low." />);
+    const wrapper = shallow(<Edit.WrappedComponent match={{ params: { id: 1 }}} name="Low Battery" description="Notify user when battery is low." />);
 
     it('sets name as prop value', () => {
       expect(wrapper.state().name).toBe('Low Battery');
