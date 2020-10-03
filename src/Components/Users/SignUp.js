@@ -32,7 +32,7 @@ class SignUp extends React.Component {
     this.setState({ [field]: e.target.value });
   }
 
-  signUp = () => {
+  submit = () => {
     let { email, password, first_name, last_name, confirm_password } = this.state;
     let errors = [];
 
@@ -109,7 +109,7 @@ class SignUp extends React.Component {
                                   placeholder="Confirm Password"
                                   onChange={(e) =>  this.handleChange(e, 'confirm_password')} />
                   </Form.Group>
-                  <Button onClick={this.signUp} variant="primary">Sign Up</Button>
+                  <Button onClick={this.submit} variant="primary">Sign Up</Button>
                 </Form>
               </Card.Body>
             </Card>

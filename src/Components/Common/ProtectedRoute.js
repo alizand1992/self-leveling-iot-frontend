@@ -1,11 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 
 class ProtectedRoute extends React.Component {
   render() {
     if (this.props.authorization || localStorage.getItem('authorization')) {
-      return this.props.children;
+      const { path, children } = this.props;
+
+      return (
+        <Route exact path={path}>
+          {children}
+        </Route>
+      );
     }
 
     return <Redirect to="/user/sign_in" />;
