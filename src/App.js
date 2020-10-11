@@ -13,6 +13,8 @@ import { bindActionCreators } from 'redux';
 import { signUserIn, signUserOut } from './actions/Users';
 import { connect } from 'react-redux';
 import ProtectedRoute from './Components/Common/ProtectedRoute';
+import 'bootstrap/dist/css/boostrap.min.css';
+import Navbar from './Components/Navbar';
 
 class App extends React.Component {
   constructor(props) {
@@ -39,17 +41,40 @@ class App extends React.Component {
   }
 
   render() {
-    const SignIn = React.lazy(() => import('./Components/Users/SignIn'));
+    /*const SignIn = React.lazy(() => import('./Components/Users/SignIn'));
     const SignUp = React.lazy(() => import('./Components/Users/SignUp'));
     const SignOut = React.lazy(() => import('./Components/Users/SignOut'));
     const Profile = React.lazy(() => import('./Components/Users/Profile'));
 
     const Notifications = React.lazy(() => import('./Components/Notifications'));
     const NewNotification = React.lazy(() => import('./Components/Notifications/New'));
-    const EditNotification = React.lazy(() => import('./Components/Notifications/Edit'));
+    const EditNotification = React.lazy(() => import('./Components/Notifications/Edit'));*/
 
     return (
-      <Router>
+     <div className='App'>
+       <Navbar bg="light" expand="lg">
+  <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+  <Navbar.Toggle aria-controls="basic-navbar-nav" />
+  <Navbar.Collapse id="basic-navbar-nav">
+    <Nav className="mr-auto">
+      <Nav.Link href="#home">Home</Nav.Link>
+      <Nav.Link href="#link">Link</Nav.Link>
+      <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+        <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+        <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
+        <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+        <NavDropdown.Divider />
+        <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+      </NavDropdown>
+    </Nav>
+    <Form inline>
+      <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+      <Button variant="outline-success">Search</Button>
+    </Form>
+  </Navbar.Collapse>
+</Navbar>
+     </div>
+      /*<Router>
         <Container>
           <Link to="/user/sign_in">Sign In</Link> <br />
           <Link to="/user/sign_up">Sign Up</Link> <br />
@@ -84,7 +109,7 @@ class App extends React.Component {
             </Switch>
           </Suspense>
         </Container>
-      </Router>
+      </Router>*/
     );
   }
 }
