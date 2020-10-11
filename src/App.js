@@ -13,8 +13,9 @@ import { bindActionCreators } from 'redux';
 import { signUserIn, signUserOut } from './actions/Users';
 import { connect } from 'react-redux';
 import ProtectedRoute from './Components/Common/ProtectedRoute';
-import 'bootstrap/dist/css/boostrap.min.css';
-import Navbar from './Components/Navbar';
+//import Navbar from './Components/Navbar';
+import { Navbar,Nav ,Button,NavDropdown,Form,FormControl} from 'react-bootstrap';
+
 
 class App extends React.Component {
   constructor(props) {
@@ -41,17 +42,17 @@ class App extends React.Component {
   }
 
   render() {
-    /*const SignIn = React.lazy(() => import('./Components/Users/SignIn'));
+    const SignIn = React.lazy(() => import('./Components/Users/SignIn'));
     const SignUp = React.lazy(() => import('./Components/Users/SignUp'));
     const SignOut = React.lazy(() => import('./Components/Users/SignOut'));
     const Profile = React.lazy(() => import('./Components/Users/Profile'));
 
     const Notifications = React.lazy(() => import('./Components/Notifications'));
     const NewNotification = React.lazy(() => import('./Components/Notifications/New'));
-    const EditNotification = React.lazy(() => import('./Components/Notifications/Edit'));*/
+    const EditNotification = React.lazy(() => import('./Components/Notifications/Edit'));
 
     return (
-     <div className='App'>
+     <div>
        <Navbar bg="light" expand="lg">
   <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
