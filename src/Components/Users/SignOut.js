@@ -34,15 +34,7 @@ class SignOut extends React.Component {
 
   render() {
     const { loading } = this.state;
-    return (
-      <React.Fragment>
-        <Redirect to="/" />;
-        <div style={{ top: '45vh', position: 'relative' }}>
-          <Loading message="Logged out ..."/>
-        </div>
-      </React.Fragment>
-    );
-    /*if (loading) {
+    if (loading) {
       return (
         <React.Fragment>
           <div style={{ top: '45vh', position: 'relative' }}>
@@ -54,7 +46,7 @@ class SignOut extends React.Component {
       return (
       <Redirect to="/" />);
       // return <Redirect to="/user_signout?"
-    }*/
+    }
   }
 }
 
