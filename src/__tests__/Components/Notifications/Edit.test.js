@@ -47,6 +47,10 @@ describe('Notification > Edit', () => {
     it('Passes Update as the buttonText', () => {
       expect(wrapper.find('NotificationsForm').find({ buttonText: 'Update' })).toHaveLength(1);
     });
+
+    it('renders triggers', () => {
+      expect(wrapper.find('Triggers')).toHaveLength(1);
+    });
   });
 
   describe('With props', () => {
@@ -58,6 +62,10 @@ describe('Notification > Edit', () => {
 
     it('sets description as prop value', () => {
       expect(wrapper.state().description).toBe('Notify user when battery is low.');
+    });
+
+    it('renders triggers', () => {
+      expect(wrapper.find('Triggers')).toHaveLength(1);
     });
   });
 });

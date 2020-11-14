@@ -58,8 +58,4 @@ describe('NotificationsForm', () => {
 
     expect(handleChange).toBeCalledTimes(2);
   });
-
-  it('renders triggers', () => {
-    expect(wrapper.find('Triggers')).toHaveLength(1);
-  });
 });
