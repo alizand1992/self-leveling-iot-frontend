@@ -6,6 +6,8 @@ import { getNotificationData, updateNotification } from '../../Util/Ajax/Notific
 import Loading from '../Common/Loading';
 
 import axios from 'axios';
+import Triggers from '../Triggers';
+import Form from 'react-bootstrap/Form';
 
 class Edit extends React.Component {
   constructor(props) {
@@ -65,7 +67,7 @@ class Edit extends React.Component {
   }
 
   render() {
-    const { name, description, updating, dirty } = this.state;
+    const { id, name, description, updating, dirty } = this.state;
 
     if (updating) {
       return <Loading message="Updating your notification." />;
@@ -83,6 +85,8 @@ class Edit extends React.Component {
                              description={description}
                              submit={this.submit}
                              handleChange={this.handleChange} />
+          <br /><br />
+          <Triggers notificationId={id} />
         </Card.Body>
       </Card>
     );
