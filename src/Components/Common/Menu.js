@@ -13,7 +13,7 @@ const Menu = () => {
       <NavDropdown title="User" id="basic-nav-dropdown">
         {authorization && (
           <React.Fragment> 
-            <NavDropdown.Item as={Link} to="/user/Profile">Profile</NavDropdown.Item>
+            <NavDropdown.Item as={Link} to="/user/profile">Profile</NavDropdown.Item>
             <NavDropdown.Item as={Link} to="/user/sign_out">Sign Out</NavDropdown.Item>
           </React.Fragment>
         )}
