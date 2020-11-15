@@ -3,10 +3,10 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { v4 as uuidv4 } from 'uuid';
 
-import Unregistered from '../../../Components/Devices/Unregistered';
+import Registered from '../../../Components/Devices/Registered';
 
 describe('Unregistered', () => {
-  const wrapper = shallow(<Unregistered />);
+  const wrapper = shallow(<Registered />);
 
   describe('no devices have been loaded yet', () => {
     it('renders loading', () => {
@@ -28,11 +28,11 @@ describe('Unregistered', () => {
     });
 
     it('renders the text', () => {
-      expect(wrapper.find('Alert').text()).toBe('There are no unregestered devices to display.');
+      expect(wrapper.find('Alert').text()).toBe('There are no devices registered for this user.');
     });
   });
 
-  describe('with unregistered devices', () => {
+  describe('with registered devices', () => {
     const devices = [
       {
         aws_device_id: uuidv4(),

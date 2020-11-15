@@ -1,13 +1,13 @@
 import React from 'react';
 
-import Loading from '../Common/Loading';
-
 import Alert from 'react-bootstrap/Alert';
 
-import { getRegisteredDevices, getUnregisteredDevices, registerDevice } from '../../Util/Ajax/Devices';
 import DeviceTable from './DeviceTable';
+import Loading from '../Common/Loading';
 
-class Unregistered extends React.Component {
+import { getRegisteredDevices, unregisterDevice } from '../../Util/Ajax/Devices';
+
+class Registered extends React.Component {
   constructor(props) {
     super(props);
 
@@ -23,18 +23,18 @@ class Unregistered extends React.Component {
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (this.props.needsReload === true) {
       this.reloadDevices();
+      this.props.reloadDone();
     }
   }
 
   reloadDevices = () => {
-    getUnregisteredDevices((devices) => {
+    getRegisteredDevices((devices) => {
       this.setState(devices);
-      this.props.reloadDone();
     });
   }
 
-  registerDevice = (data) => {
-    registerDevice(data , () => {
+  unregisterDevice = (aws_device_id) => {
+    unregisterDevice({ aws_device_id }, () => {
       this.props.reload();
     });
   }
@@ -49,15 +49,15 @@ class Unregistered extends React.Component {
     if (devices.length === 0) {
       return (
         <Alert variant="warning">
-          There are no unregestered devices to display.
+          There are no devices registered for this user.
         </Alert>
       );
     }
 
     return (
-      <DeviceTable devices={devices} registerDevice={this.registerDevice} />
+      <DeviceTable devices={devices} unregisterDevice={this.unregisterDevice}/>
     );
   }
 }
 
-export default Unregistered;
+export default Registered;
