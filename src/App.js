@@ -49,11 +49,13 @@ class App extends React.Component {
     const Notifications = React.lazy(() => import('./Components/Notifications'));
     const NewNotification = React.lazy(() => import('./Components/Notifications/New'));
     const EditNotification = React.lazy(() => import('./Components/Notifications/Edit'));
+    const Devices = React.lazy(() => import('./Components/Devices'));
 
     return (
       <Router>
         <Container>
-          <Menu />
+          <Menu /><br />
+
           <Suspense fallback={<Loading/>}>
             <Switch>
               <Route path="/user/sign_out">
@@ -76,6 +78,9 @@ class App extends React.Component {
               </ProtectedRoute>
               <ProtectedRoute path="/notifications/">
                 <Notifications />
+              </ProtectedRoute>
+              <ProtectedRoute path="/devices/">
+                <Devices />
               </ProtectedRoute>
             </Switch>
           </Suspense>
