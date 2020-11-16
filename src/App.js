@@ -54,7 +54,7 @@ class App extends React.Component {
     return (
       <Router>
         <Container>
-          <Menu />
+          <Menu /><br />
 
           <Suspense fallback={<Loading/>}>
             <Switch>
@@ -79,7 +79,7 @@ class App extends React.Component {
               <ProtectedRoute path="/notifications/">
                 <Notifications />
               </ProtectedRoute>
-              <ProtectedRoute path="/devices/unregistered">
+              <ProtectedRoute path="/devices/">
                 <Devices />
               </ProtectedRoute>
             </Switch>
