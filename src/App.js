@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import Container from 'react-bootstrap/Container';
 
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Loading from './Components/Common/Loading';
 import { getUserData } from './Util/Ajax/Users';
@@ -13,6 +13,8 @@ import { bindActionCreators } from 'redux';
 import { signUserIn, signUserOut } from './actions/Users';
 import { connect } from 'react-redux';
 import ProtectedRoute from './Components/Common/ProtectedRoute';
+import Menu from './Components/Common/Menu';
+
 
 class App extends React.Component {
   constructor(props) {
@@ -51,13 +53,7 @@ class App extends React.Component {
     return (
       <Router>
         <Container>
-          <Link to="/user/sign_in">Sign In</Link> <br />
-          <Link to="/user/sign_up">Sign Up</Link> <br />
-          <Link to="/user/sign_out">Sign Out</Link> <br />
-          <Link to="/user/profile">Profile</Link> <br />
-          <Link to="/notifications">Notifications</Link> <br />
-          <Link to="/notifications/new">Create Notification</Link> <br />
-
+          <Menu />
           <Suspense fallback={<Loading/>}>
             <Switch>
               <Route path="/user/sign_out">

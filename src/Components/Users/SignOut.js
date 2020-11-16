@@ -28,9 +28,12 @@ class SignOut extends React.Component {
     }
   }
 
+  timeout(ms) { //pass a time in milliseconds to this function
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
   render() {
     const { loading } = this.state;
-
     if (loading) {
       return (
         <React.Fragment>
@@ -40,7 +43,9 @@ class SignOut extends React.Component {
         </React.Fragment>
       );
     } else {
-      return <Redirect to="/" />;
+      return (
+      <Redirect to="/" />);
+      // return <Redirect to="/user_signout?"
     }
   }
 }
