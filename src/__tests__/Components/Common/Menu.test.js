@@ -58,8 +58,9 @@ describe('Menu tests', () => {
       expect(signedInWrapper.find({ to: '/notifications' }).text()).toBe('List Notifications');
       expect(signedInWrapper.find({ to: '/notifications/new' }).text()).toBe('Create Notification');
 
-      expect(signedInWrapper.find('NavLink')).toHaveLength(1);
+      expect(signedInWrapper.find('NavLink')).toHaveLength(2);
       expect(signedInWrapper.find({ to: '/devices/' }).text()).toBe('Devices');
+      expect(signedInWrapper.find({ to: '/my_devices/' }).text()).toBe('My Devices');
     });
   });
 });
