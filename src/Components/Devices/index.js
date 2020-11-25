@@ -1,6 +1,8 @@
 import React from 'react';
 import Registered from './Registered';
 import Unregistered from './Unregistered';
+import Button from 'react-bootstrap/Button';
+import { sync } from '../../Util/Ajax/Devices';
 
 class Devices extends React.Component {
   constructor(props) {
@@ -21,11 +23,16 @@ class Devices extends React.Component {
     }
   }
 
+  sync = () => {
+    sync();
+  }
+
   render() {
     const { needsReload } = this.state;
 
     return (
       <React.Fragment>
+        <Button onClick={this.sync}>Sync</Button>
         <Registered reload={this.reload}
                     needsReload={needsReload}
                     reloadDone={this.reloadDone} />

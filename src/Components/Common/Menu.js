@@ -13,6 +13,7 @@ const Menu = () => {
           {authorization &&
             <React.Fragment>
               <Nav.Link as={Link} to="/devices/">Devices</Nav.Link>
+              <Nav.Link as={Link} to="/my_devices/">My Devices</Nav.Link>
 
               <NavDropdown title="Notifications" id="basic-nav-dropdown">
                 <NavDropdown.Item as={Link} to="/notifications">List Notifications</NavDropdown.Item>

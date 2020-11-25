@@ -50,6 +50,7 @@ class App extends React.Component {
     const NewNotification = React.lazy(() => import('./Components/Notifications/New'));
     const EditNotification = React.lazy(() => import('./Components/Notifications/Edit'));
     const Devices = React.lazy(() => import('./Components/Devices'));
+    const MyDevices = React.lazy(() => import('./Components/Devices/MyDevices'));
 
     return (
       <Router>
@@ -81,6 +82,9 @@ class App extends React.Component {
               </ProtectedRoute>
               <ProtectedRoute path="/devices/">
                 <Devices />
+              </ProtectedRoute>
+              <ProtectedRoute path="/my_devices">
+                <MyDevices />
               </ProtectedRoute>
             </Switch>
           </Suspense>
